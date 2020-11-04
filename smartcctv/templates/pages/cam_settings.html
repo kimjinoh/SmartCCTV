@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>camera settings popup</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
+</head>
+<body>
+    <h2>camera settings</h2>
+    <br/>
+   
+    <div>
+	
+       <h3>침입탐지 시스템 시간 설정</h3>
+        <p>시작 시간&nbsp&nbsp종료시간</p>
+        &nbsp
+	<form method="POST" action="{%url 'timeSetting'%}">
+	{%csrf_token%}
+        <select name="detection_start">
+            <script language="javascript" type="text/javascript"> 
+                for(var d=1;d<=24;d++)
+                {
+                    document.write("<option value="+d+">"+d+"</option>");
+                }
+</script>
+        </select>
+        &nbsp&nbsp&nbsp~&nbsp&nbsp
+        <select name="detection_end">
+            <script language="javascript" type="text/javascript"> 
+                for(var d=1;d<=24;d++)
+                {
+                    document.write("<option value="+d+">"+d+"</option>");
+                }
+</script>
+        </select>
+        
+         <br/>
+    <div>
+       <h3>피플카운팅 시간 설정</h3>
+        <p>시작 시간&nbsp&nbsp종료시간</p>
+        &nbsp
+        <select name="peoplecount_start">
+            <script language="javascript" type="text/javascript"> 
+                for(var d=1;d<=24;d++)
+                {
+                    document.write("<option value="+d+">"+d+"</option>");
+                }
+</script>
+        </select>
+        &nbsp&nbsp&nbsp~&nbsp&nbsp
+        <select name="peoplecount_end">
+            <script language="javascript" type="text/javascript"> 
+                for(var d=1;d<=24;d++)
+                {
+                    document.write("<option value="+d+">"+d+"</option>");
+                }
+</script>
+        </select>
+	<br/><br/>
+	<input type="submit" value="등록" />
+          <input type="button" value="닫기" onclick="window.close();" />
+	</form>
+    </div>
+ 
+</body>
+</html>

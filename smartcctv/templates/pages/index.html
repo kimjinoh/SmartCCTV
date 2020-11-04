@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Dashboard - SB Admin</title>
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+        <script>
+
+
+      $( document ).ready(function() {
+         $('.trigger2').click(function(){
+          $('#popup_layer2, #overlay_t2').show();
+          $('#popup_layer2').css("top", Math.max(0, $(window).scrollTop() + 100) + "px");
+          // $('#popup_layer2').css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
+      });
+      $('#overlay_t2, .cancel').click(function(e){
+          e.preventDefault();
+          $('#popup_layer2, #overlay_t2').hide();
+      });
+      });
+          </script>
+      <style>
+          .serchbar{
+              padding:5%;
+          }
+          main{
+              text-align: center;
+              margin: 0 20%;
+          }
+           #overlay_t2{
+              background-color: #000;
+              bottom: 0;
+              left: 0;
+              opacity: 0.5;
+              filter: alpha(opacity = 50); /* IE7 & 8 */
+              position: fixed;
+              right: 0;
+              top: 0;
+              z-index: 99;
+              display:none;}
+
+           #popup_layer2{ width:400px;
+              padding: 20%;
+              margin-bottom:30px;
+              background:#fff;
+              border:solid 1px #ccc;
+              color: black;
+              position:absolute;
+              top:50%; left:50%;
+              position: fixed;
+              box-shadow: 0px 1px 20px #333;
+              z-index:100; display:none;}
+
+            .btn-category{
+              background-color: RGBA(0,0,0,0);
+              color: white;
+            }
+            .menubar{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+
+            }
+
+            .menuli {
+                float: left;
+            }
+
+            .menuli a {
+                display: block;
+                color: white;
+                text-align: center;
+                padding: 14px 16px;
+                text-decoration: none;
+            }
+
+            .menuli a:hover {
+                background-color: #111;
+            }
+            .nav-icon{
+                width:20px;
+                height:20px;
+            }
+            .cctv-icon{
+                width:32px;
+                height:32px;
+            }
+
+      </style>
+    </head>
+    <body class="sb-nav-fixed">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-danger">
+           <div style="width:120px;float:left;"><a class="navbar-brand" href="">Smart CCTV</a></div>
+		 <div style="float:left;margin-right:100px;">  <img class="cctv-icon" src="{% static 'img/eye.png' %}"></div>
+         
+            <ul class="menubar">
+                <li class="menuli"><a class="active" href="#home"><img class="nav-icon" src="{% static 'img/video-camera.png' %}">&nbsp;Cameras</a></li>
+                <li class="menuli"><a href="{% url 'report' %}"><img class="nav-icon" src="{% static 'img/report.png' %}">&nbsp;Report</a></li>
+                
+                
+		<input type="hidden" name="username" value="{{username}}"/>
+            </ul>
+            <ul class="navbar-nav ml-auto ml-md-0">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+                        <a class="dropdown-item" href="#">Settings</a><a class="dropdown-item" href="#">Activity Log</a>
+                        <div class="dropdown-divider"></div>
+			{% if user.is_active %}
+				<a class="dropdown-item" href="{%url 'logout' %}">Logout</a>
+			{% else %}
+                        <a class="dropdown-item" href="{% url 'login' %}">Login</a>
+			{%endif%}
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu" style="padding-left: 5%; padding-right: 5%;">
+                        <div class="nav">
+                            <br>
+                          <!-- Navbar Search-->
+                           <!-- <form>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <button id="button-addon8" type="submit" class="btn btn-danger"><i class="fa fa-search"></i></button>
+                                    </div>
+                                    <input type="search" placeholder="Search for..." aria-describedby="button-addon8" class="form-control">
+                                </div>
+                            </form>-->
+                        </div>
+                        <br>
+                        <div>
+                            <div  class="sb-sidenav-footer">
+                                <button type="button" name="button" class="btn btn-default btn-sm btn-category trigger2" >Camera Registration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+
+                                    <!--                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>-->
+                                </button>
+                            </div>
+                        <br><br>
+                            <div class="sb-sidenav-menu-heading">CCTV</div>
+                        <a class="nav-link" href="">section1</a>
+                        <a class="nav-link" href="">section2</a>
+
+
+
+
+                        </div>
+                    </div>
+
+
+
+
+                    <div id="overlay_t2"></div>
+                        <div id="popup_layer2" style="text-align: center"><h4>Add Camera</h4><br>
+                      <div>
+                    <form method="POST" action="{%url 'camera'%}"> 
+						{%csrf_token%}
+       						<input type="text" name="cid" placeholder="Input Serial Number" class="form-control"/>
+						
+						<br>
+                        <button type="button" name="button" class="btn cancel btn-secondary">취소</button>
+                        <input type="submit" value="생성" class="btn btn-success" >
+                    </form>
+            </div>
+        </div>
+
+
+                    </div>
+                </nav>
+            </div>
+            <div id="layoutSidenav_content" style="margin-left:13%; margin-top:5%;">
+                <main>
+                    <div class="container-fluid">
+                        <h1 class="mt-4">My  camera</h1>
+                        </br>
+                       
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">section1
+									<input type="button" value="settings" onclick="showPopup();"/></div>
+									<!--<input type="button" value="settings" onclick="location.href='{%url 'camSetting' %}'"/>-->
+									<script language="javascript">
+									function showPopup(){
+									//window.open("cam_settings.html","camSetting","width=400, height=300, left=100, top=50");}
+									window.open("{%url 'camSetting' %}","camSetting","width=400,height=300,left=100,top=50");}
+									</script>
+                                    <div class="card-body"><img style="max-width:100%; height:auto;" src="http://119.196.44.122:8091/?action=stream" /></div>
+                                </div>
+                            </div>
+                            <!--<div class="col-md-12">
+                                <div class="card mb-4">
+                                    <div class="card-header">section2 <input type="button" value="people" onclick="location.href='{%url 'ex' %}'"/>
+				    </div>
+                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="250"></canvas></div>
+                                </div>
+                            </div>-->
+
+
+                </main>
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid">
+                        <div class="d-flex align-items-center justify-content-between small">
+                            <div class="text-muted">Copyright &copy; LOOKATTHIS Website 2020</div>
+                            <div>
+                                <a href="#">Privacy Policy</a>
+                                &middot;
+                                <a href="#">Terms &amp; Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="{% static 'js/scripts.js' %}"></script>
+
+    </body>
+</html>
