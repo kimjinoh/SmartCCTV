@@ -140,7 +140,7 @@ while True:
                             message.attach(part)
                         with smtplib.SMTP_SSL('smtp.naver.com', 465) as server:
                             server.ehlo()
-                            server.login('wlsdh1110', 'wlsdh10@3')
+                            server.login('wlsdh1110', 'password')
                             server.send_message(message)
 
                         print('이메일 발송 성공')
